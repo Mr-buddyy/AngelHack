@@ -12,7 +12,7 @@ function Footer() {
                     <h1 class="footer-title" style="margin: 0">
                         Ready to get started?
                     </h1>
-                    <a href="#reportForm" class="btn btn-active button-primary">
+                    <a href="/home#reportForm" class="btn btn-active button-primary">
                         Isi Formulir
                     </a>
                 </nav>
@@ -21,16 +21,16 @@ function Footer() {
             <footer class="footer p-10">
                 <nav>
                     <h6 class="footer-title">Quick Link</h6>
-                    <a href="#about" class="link link-hover">
+                    <a href="/home#about" class="link link-hover">
                         About
                     </a>
-                    <a href="#reportForm" class="link link-hover">
+                    <a href="/home#reportForm" class="link link-hover">
                         Features
                     </a>
                 </nav>
                 <nav>
                     <h6 class="footer-title">Help</h6>
-                    <a href="#faq" class="link link-hover">
+                    <a href="/home#faq" class="link link-hover">
                         FAQ
                     </a>
                 </nav>

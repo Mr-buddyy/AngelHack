@@ -15,13 +15,16 @@ function Navbar() {
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1 items-center">
                         <li>
-                            <a href="#about">About</a>
+                            <a href="/home#about">About</a>
                         </li>
                         <li>
-                            <a href="#reportForm">Feature</a>
+                            <a href="/home#reportForm">Feature</a>
                         </li>
                         <li>
-                            <a href="#faq">FAQ</a>
+                            <a href="/Submissions">Daftar Laporan</a>
+                        </li>
+                        <li>
+                            <a href="/home#faq">FAQ</a>
                         </li>{" "}
                         <li>
                             {" "}

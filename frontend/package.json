@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.14.1",
+    "emailjs-com": "^3.2.0",
     "solid-js": "^1.8.18"
   },
   "devDependencies": {

@@ -9,7 +9,7 @@ function Footer() {
                     <img src={Logo} alt="Logo" />
                 </nav>
                 <nav class="horizontal-align">
-                    <h6 class="footer-title">Ready to get started?</h6>
+                    <h1 class="footer-title" style="margin: 0">Ready to get started?</h1>
                     <button class="btn btn-active btn-primary">Isi Formulir</button>
                 </nav>
             </footer>

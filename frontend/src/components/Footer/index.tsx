@@ -1,10 +1,11 @@
 import { Logo } from "@/assets";
+import { theme } from "@/config";
 
 function Footer() {
     return (
-        <div class="bg-opacity-40 bg-white w-full">
+        <div class={`bg-opacity-40 ${theme() ? "bg-white" : "bg-black text-white"} w-full px-[100px]`}>
             {" "}
-            <footer class="footer align-items p-10 border-b">
+            <footer class="footer align-items py-10 border-b">
                 <nav>
                     <img src={Logo} alt="Logo" />
                 </nav>
@@ -18,7 +19,7 @@ function Footer() {
                 </nav>
             </footer>
             {/* <div class="w-full h-[1px] px-10 bg-black"></div> */}
-            <footer class="footer p-10">
+            <footer class="footer py-10">
                 <nav>
                     <h6 class="footer-title">Quick Link</h6>
                     <a href="#about" class="link link-hover">
@@ -35,7 +36,7 @@ function Footer() {
                     </a>
                 </nav>
             </footer>
-            <footer class="footer border-base-300  px-10 py-4">
+            <footer class="footer border-base-300  py-10">
                 <aside class="grid-flow-col items-center">
                     <p>© 2024 Satria IT. All rights reserved.</p>
                 </aside>

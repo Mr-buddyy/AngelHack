@@ -1,14 +1,17 @@
 function About() {
     return (
-        <div id="about" class="flex flex-col gap-50 px-[100px]">
-            <div class="flex flex-col gap-4">
+        <div id="about" class="flex flex-col lg:gap-50 lg:px-[100px] px-20">
+            <div class="flex flex-col gap-4 ">
+                {/* <div class="relative inline-block"> */}
                 <p class="title-section">Tentang Kami</p>
+                {/* <span class="absolute inset-x-0 bg-red-500 h-8 -z-1 bottom-0 left-0 w-[24vw]"></span>
+                </div> */}
                 <p class="text-desc">
                     Nihaw Platfrom adalah platform pengaduan yang dapat di ajukan oleh siapa saja dengan tanpa harus menyertakan identitas. Seluruh masyarakat dapat mengadukan keluhan secara bebas tanpa takut identitasnya ketahuan.
                 </p>
             </div>
-            <div class="flex flex-row py-10 items-center justify-between gap-5">
-                <div class="card image-full w-[32vw] bg-gradient-to-br from-[#a84be1] via-[#a486b7] to-[#9d00fd] rounded-2xl">
+            <div class="grid grid-cols-3 py-10 items-center justify-between gap-5 ">
+                <div class="col-span-full lg:col-span-1 md:col-span-full sm:col-span-full card image-full  bg-gradient-to-br from-[#a84be1] via-[#a486b7] to-[#9d00fd] rounded-2xl shadow-[2px_2px_500px_22px_#d53f8c]">
                     <div class="card-body">
                         <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -19,14 +22,14 @@ function About() {
                             />
                         </svg>
 
-                        <h2 class="card-title text-3xl">Mudah Digunakan</h2>
+                        <h2 class="card-title">Mudah Digunakan</h2>
                         <p class="text-justify">
                             Dengan desain yang simpel, platform Nihaw menawarkan antarmuka intuitif, aksesibilitas tinggi, fitur lengkap, keamanan terjamin, dukungan pelanggan responsif, kustomisasi, dan kinerja cepat untuk berbagai
                             kalangan pengguna.
                         </p>
                     </div>
                 </div>
-                <div class="card image-full w-[32vw] bg-gradient-to-bl from-[#2fd0ee] via-[#80b6c0] to-[#1a7688] rounded-2xl">
+                <div class="col-span-full lg:col-span-1 md:col-span-full sm:col-span-full card image-full  bg-gradient-to-bl from-[#2fd0ee] via-[#80b6c0] to-[#1a7688] rounded-2xl">
                     <div class="card-body ">
                         <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -44,7 +47,7 @@ function About() {
                         </p>
                     </div>
                 </div>
-                <div class="card image-full w-[32vw] bg-gradient-to-br from-[#555aca] via-[#6366ae] to-[#2a2c64] rounded-2xl">
+                <div class="col-span-full lg:col-span-1 md:col-span-full sm:col-span-full card image-full  bg-gradient-to-br from-[#555aca] via-[#6366ae] to-[#2a2c64] rounded-2xl ">
                     <div class="card-body ">
                         <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path

@@ -4,7 +4,7 @@ import { Logo } from "@/assets";
 
 function Navbar() {
     return (
-        <nav class="px-[50px]">
+        <nav class="px-0 sm:px-[50px]">
             {" "}
             <div class="navbar">
                 <div class="flex-1">
@@ -14,13 +14,13 @@ function Navbar() {
                 </div>
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1 items-center">
-                        <li>
+                        <li class="hidden sm:flex">
                             <a href="#about">About</a>
                         </li>
-                        <li>
+                        <li class="hidden sm:flex">
                             <a href="#reportForm">Feature</a>
                         </li>
-                        <li>
+                        <li class="hidden sm:flex">
                             <a href="#faq">FAQ</a>
                         </li>{" "}
                         <li>

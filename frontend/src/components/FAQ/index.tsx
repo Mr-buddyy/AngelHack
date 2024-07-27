@@ -1,7 +1,7 @@
 function FAQ() {
     return (
-        <div id="faq" class="p-6">
-            <h1 class="card-title mb-4">Frequently asked questions</h1>
+        <div id="faq" class="pb-[120px] px-[100px]">
+            <h1 class="card-title mb-4 title-section">Frequently asked questions</h1>
             <div class="join join-vertical w-full">
                 <div class="collapse collapse-arrow join-item border-base-300 border">
                     <input type="radio" name="my-accordion-4" checked="checked" />

@@ -1,9 +1,11 @@
+import { theme } from "@/config";
+
 function Form() {
     return (
-        <div id="reportForm" class="flex flex-col">
+        <div class="flex flex-col">
             {" "}
             <div class="text-center title-section pb-[50px]">From Complement</div>{" "}
-            <div class="relative flex flex-col justify-center h-screen overflow-hidden bg-white bg-opacity-30 bg-blur">
+            <div id="reportForm" class={`relative flex flex-col justify-center h-screen overflow-hidden ${theme() ? "bg-white" : "bg-black"} bg-opacity-30 bg-blur`}>
                 <div class="w-full m-auto bg-white rounded-md shadow-md lg:max-w-xl">
                     <form class="space-y-4 py-[60px] px-[70px]">
                         <div>

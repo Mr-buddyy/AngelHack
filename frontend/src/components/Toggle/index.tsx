@@ -1,9 +1,10 @@
 import { createSignal, createEffect, onCleanup } from "solid-js";
+import { theme, setTheme } from "@/config";
 //icon import
 import { Sun, Moon } from "@/assets";
 
 const ToggleTheme = () => {
-    const [theme, setTheme] = createSignal(localStorage.getItem("theme") === "dark");
+    // const [theme, setTheme] = createSignal(localStorage.getItem("theme") === "dark");
 
     const toggleTheme = () => {
         setTheme((prevTheme: any) => !prevTheme);

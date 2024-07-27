@@ -17,12 +17,12 @@ function Footer() {
             <footer class="footer bg-base-200 text-base-content p-10">
                 <nav>
                     <h6 class="footer-title">Quick Link</h6>
-                    <a class="link link-hover">About</a>
-                    <a class="link link-hover">Features</a>
+                    <a href="#about" class="link link-hover">About</a>
+                    <a href="#reportForm" class="link link-hover">Features</a>
                 </nav>
                 <nav>
                     <h6 class="footer-title">Help</h6>
-                    <a class="link link-hover">FAQ</a>
+                    <a href="#faq" class="link link-hover">FAQ</a>
                 </nav>
             </footer>
             <footer class="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">

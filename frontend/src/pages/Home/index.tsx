@@ -41,7 +41,7 @@ function Home() {
                 </div>
             </div>
             {/* About */}
-            <div class="flex flex-row p-10 items-center justify-between">
+            <div id="about" class="flex flex-row p-10 items-center justify-between">
                 {" "}
                 <div class="card bg-base-100 image-full w-96 shadow-xl">
                     <figure>
@@ -82,7 +82,7 @@ function Home() {
             </div>
 
             {/* Form */}
-            <div class="relative flex flex-col justify-center h-screen overflow-hidden">
+            <div id="reportForm" class="relative flex flex-col justify-center h-screen overflow-hidden">
                 <div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
                     <h1 class="text-3xl font-semibold text-center text-purple-700">DaisyUI</h1>
                     <form class="space-y-4">

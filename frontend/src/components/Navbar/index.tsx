@@ -14,10 +14,13 @@ function Navbar() {
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1">
                         <li>
-                            <a>About</a>
+                            <a href="#about">About</a>
                         </li>
                         <li>
-                            <a>Feature</a>
+                            <a href="#reportForm">Feature</a>
+                        </li>
+                        <li>
+                            <a href="#faq">FAQ</a>
                         </li>
                     </ul>
                 </div>

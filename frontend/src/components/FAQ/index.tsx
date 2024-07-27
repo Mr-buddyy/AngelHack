@@ -1,6 +1,6 @@
 function FAQ() {
     return (
-        <div class="p-6 bg-base-100">
+        <div id="faq" class="p-6 bg-base-100">
             <h1 class="card-title mb-4">Frequently asked questions</h1>
             <div class="join join-vertical w-full">
                 <div class="collapse collapse-arrow join-item border-base-300 border">

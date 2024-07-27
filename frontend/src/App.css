@@ -25,3 +25,9 @@
 .read-the-docs {
     color: #888;
 }
+
+.horizontal-align {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adjust the spacing as needed */
+}

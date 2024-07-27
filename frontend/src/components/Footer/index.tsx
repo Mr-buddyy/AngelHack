@@ -10,7 +10,7 @@ function Footer() {
                 </nav>
                 <nav class="horizontal-align">
                     <h1 class="footer-title" style="margin: 0">Ready to get started?</h1>
-                    <button class="btn btn-active btn-primary">Isi Formulir</button>
+                    <a href="#reportForm" class="btn btn-active btn-primary">Isi Formulir</a>
                 </nav>
             </footer>
             <div class="divider-horizontal"></div>

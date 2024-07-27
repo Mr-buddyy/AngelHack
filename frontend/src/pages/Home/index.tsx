@@ -19,8 +19,8 @@ function Home() {
                         <p class="py-6">Adukan keluhan anda dengan anonimus dan rahasia</p>
                         <div class="flex flex-row gap-2">
                             {" "}
-                            <button class="btn btn-primary">About</button>
-                            <button class="btn btn-primary">Get Started</button>
+                            <a href="#about" class="btn btn-primary">About</a>
+                            <a href="#reportForm" class="btn btn-primary">Feature</a>
                         </div>
                     </div>
                 </div>

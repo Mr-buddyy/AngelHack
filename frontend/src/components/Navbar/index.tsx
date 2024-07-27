@@ -1,4 +1,5 @@
-import Solid from "@/assets/solid.svg";
+// import Solid from "@/assets/solid.svg";
+import Toggle from "../Toggle";
 
 function Navbar() {
     return (
@@ -11,7 +12,9 @@ function Navbar() {
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1">
                         <li>
-                            <a>Link</a>
+                            <a>
+                                <Toggle />
+                            </a>
                         </li>
                         <li>
                             <details>

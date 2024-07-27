@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-primary {
+    @apply bg-[#FF0038] text-white hover:text-[#FF0038] hover:bg-white;
+}
+.color-primary {
+    @apply text-[#FF0038];
+}
+.card.image-full:before {
+    background-color: transparent;
+}
+.card-body {
+    padding: 0;
+}
+.title-section {
+    @apply text-5xl font-bold pt-[120px];
+}
+.text-desc {
+    @apply text-base font-normal max-w-[700px] text-justify;
+}
+.body {
+    color: #ffffff;
+}
+.card.image-full > .card-body {
+    color: #ffffff;
+}

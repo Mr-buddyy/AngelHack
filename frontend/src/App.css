@@ -5,6 +5,10 @@
   text-align: center;
 } */
 
+html {
+    scroll-behavior: smooth;
+}
+
 .logo {
     height: 6em;
     padding: 1.5em;
@@ -24,4 +28,10 @@
 
 .read-the-docs {
     color: #888;
+}
+
+.horizontal-align {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Adjust the spacing as needed */
 }

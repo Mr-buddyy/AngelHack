@@ -1,4 +1,5 @@
 import Solid from "@/assets/solid.svg";
+import { Logo } from "@/assets";
 
 function Navbar() {
     return (
@@ -6,25 +7,17 @@ function Navbar() {
             {" "}
             <div class="navbar bg-base-100">
                 <div class="flex-1">
-                    <a class="btn btn-ghost text-xl">daisyUI</a>
+                    <a class="btn btn-ghost text-xl">
+                        <img src={Logo} alt="" class="w-15 h-10" />
+                    </a>
                 </div>
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1">
                         <li>
-                            <a>Link</a>
+                            <a>About</a>
                         </li>
                         <li>
-                            <details>
-                                <summary>Parent</summary>
-                                <ul class="bg-base-100 rounded-t-none p-2">
-                                    <li>
-                                        <a>About</a>
-                                    </li>
-                                    <li>
-                                        <a>Features</a>
-                                    </li>
-                                </ul>
-                            </details>
+                            <a>Feature</a>
                         </li>
                     </ul>
                 </div>

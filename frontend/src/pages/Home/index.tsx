@@ -1,5 +1,6 @@
 import Solid from "@/assets/solid.svg";
 import Navbar from "@/components/Navbar";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { TailwindCSS, Solidjs, MySQL, Python } from "@/assets";
 
@@ -123,29 +124,7 @@ function Home() {
             </div>
             {/* end form */}
             {/* FAQ */}
-            <div class="join join-vertical w-full">
-                <div class="collapse collapse-arrow join-item border-base-300 border">
-                    <input type="radio" name="my-accordion-4" checked="checked" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content">
-                        <p>hello</p>
-                    </div>
-                </div>
-                <div class="collapse collapse-arrow join-item border-base-300 border">
-                    <input type="radio" name="my-accordion-4" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content">
-                        <p>hello</p>
-                    </div>
-                </div>
-                <div class="collapse collapse-arrow join-item border-base-300 border">
-                    <input type="radio" name="my-accordion-4" />
-                    <div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-                    <div class="collapse-content">
-                        <p>hello</p>
-                    </div>
-                </div>
-            </div>
+            <FAQ />
             {/* end FAQ */}
             {/* Footer */}
             <Footer />

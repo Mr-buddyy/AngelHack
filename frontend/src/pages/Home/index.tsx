@@ -1,3 +1,4 @@
+import { createSignal } from "solid-js";
 import Solid from "@/assets/solid.svg";
 import Navbar from "@/components/Navbar";
 import FAQ from "@/components/FAQ";
@@ -5,6 +6,71 @@ import Footer from "@/components/Footer";
 import { TailwindCSS, Solidjs, MySQL, Python } from "@/assets";
 
 function Home() {
+    const [formData, setFormData] = createSignal({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        latitude: '',
+        longitude: ''
+    });
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setFormData((prevData) => ({
+                        ...prevData,
+                        latitude,
+                        longitude
+                    }));
+
+                    fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const location = data.display_name;
+                            setFormData((prevData) => ({
+                                ...prevData,
+                                location
+                            }));
+
+                            // Log or save the form data including the localized location
+                            console.log('Form Data:', {
+                                ...formData,
+                                latitude,
+                                longitude,
+                                location
+                            });
+
+                            // Perform the form submission logic here
+                            // For example, you could send the data to a server
+                        })
+                        .catch(error => {
+                            console.error('Error fetching location:', error);
+                            alert('Unable to retrieve your location address. Please try again.');
+                        });
+
+                    // Perform the form submission logic here
+                    // For example, you could send the data to a server
+                },
+                (error) => {
+                    console.error('Error getting geolocation: ', error);
+                    alert('Unable to retrieve your location. Please enable location services and try again.');
+                }
+            );
+        } else {
+            alert('Geolocation is not supported by your browser.');
+        }
+    };
+
     return (
         <div>
             <Navbar />
@@ -82,40 +148,72 @@ function Home() {
             </div>
 
             {/* Form */}
-            <div id="reportForm" class="relative flex flex-col justify-center h-screen overflow-hidden">
-                <div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-                    <h1 class="text-3xl font-semibold text-center text-purple-700">DaisyUI</h1>
-                    <form class="space-y-4">
+            <div id="reportForm" className="relative flex flex-col justify-center h-screen overflow-hidden">
+                <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
+                    <h1 className="text-3xl font-semibold text-center text-purple-700">DaisyUI</h1>
+                    <form className="space-y-4" onSubmit={handleSubmit}>
                         <div>
-                            <label class="label">
-                                <span class="text-base label-text">Name</span>
+                            <label className="label">
+                                <span className="text-base label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="Name" class="w-full input input-bordered input-primary" />
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Name"
+                                className="w-full input input-bordered input-primary"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                required
+                            />
                         </div>
                         <div>
-                            <label class="label">
-                                <span class="text-base label-text">Email</span>
+                            <label className="label">
+                                <span className="text-base label-text">Email</span>
                             </label>
-                            <input type="text" placeholder="Email Address" class="w-full input input-bordered input-primary" />
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="Email Address"
+                                className="w-full input input-bordered input-primary"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                required
+                            />
                         </div>
                         <div>
-                            <label class="label">
-                                <span class="text-base label-text">Password</span>
+                            <label className="label">
+                                <span className="text-base label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="Enter Password" class="w-full input input-bordered input-primary" />
+                            <input
+                                type="password"
+                                name="password"
+                                placeholder="Enter Password"
+                                className="w-full input input-bordered input-primary"
+                                value={formData.password}
+                                onChange={handleInputChange}
+                                required
+                            />
                         </div>
                         <div>
-                            <label class="label">
-                                <span class="text-base label-text">Confirm Password</span>
+                            <label className="label">
+                                <span className="text-base label-text">Confirm Password</span>
                             </label>
-                            <input type="password" placeholder="Confirm Password" class="w-full input input-bordered input-primary" />
+                            <input
+                                type="password"
+                                name="confirmPassword"
+                                placeholder="Confirm Password"
+                                className="w-full input input-bordered input-primary"
+                                value={formData.confirmPassword}
+                                onChange={handleInputChange}
+                                required
+                            />
                         </div>
                         <div>
-                            <button class="btn btn-block btn-primary">Sign Up</button>
+                            <button type="submit" className="btn btn-block btn-primary">Sign Up</button>
                         </div>
                         <span>
-                            Already have an account ?
-                            <a href="#" class="text-blue-600 hover:text-blue-800 hover:underline">
+                            Already have an account?
+                            <a href="#" className="text-blue-600 hover:text-blue-800 hover:underline">
                                 Login
                             </a>
                         </span>

@@ -11,26 +11,26 @@ function Footer() {
                 </nav>
                 <nav class="horizontal-align">
                     <h1 class="footer-title" style="margin: 0">
-                        Ready to get started?
+                        Ada kerusakan infrastruktur?
                     </h1>
-                    <a href="/home#reportForm" class="btn button-primary">
-                        Isi Formulir
+                    <a href="/home#reportForm" class="btn btn-active button-primary">
+                        Laporkan Sekarang!
                     </a>
                 </nav>
             </footer>
             {/* <div class="w-full h-[1px] px-10 bg-black"></div> */}
             <footer class="footer py-10">
                 <nav>
-                    <h6 class="footer-title">Quick Link</h6>
+                    <h6 class="footer-title">Tautan Instan</h6>
                     <a href="/home#about" class="link link-hover">
-                        About
+                        Tentang Kami
                     </a>
                     <a href="/home#reportForm" class="link link-hover">
-                        Features
+                        Formulir Pelaporan
                     </a>
                 </nav>
                 <nav>
-                    <h6 class="footer-title">Help</h6>
+                    <h6 class="footer-title">Bantuan</h6>
                     <a href="/home#faq" class="link link-hover">
                         FAQ
                     </a>

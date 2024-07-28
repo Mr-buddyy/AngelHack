@@ -12,10 +12,10 @@ function Hero() {
                     <div class="flex flex-row gap-2">
                         {" "}
                         <a href="#about" class="btn btn-outline">
-                            About
+                            Tentang Kami
                         </a>
                         <a href="#reportForm" class="btn button-primary">
-                            Feature
+                            Formulir Pelaporan
                         </a>
                     </div>
                 </div>

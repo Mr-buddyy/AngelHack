@@ -16,10 +16,10 @@ function Navbar() {
                     <ul class="menu menu-horizontal px-1 items-center">
                         <li>{/* <a href="/home#about">About</a> */}</li>
                         <li class="hidden sm:flex">
-                            <a href="/home#reportForm">Feature</a>
+                            <a href="/home#reportForm">Formulir Pelaporan</a>
                         </li>
                         <li class="hidden sm:flex">
-                            <a href="/Submissions">Daftar Laporan</a>
+                            <a href="/Submissions">Data Laporan</a>
                         </li>
                         <li>{/* <a href="/home#faq">FAQ</a> */}</li>{" "}
                         <li>

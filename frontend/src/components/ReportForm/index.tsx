@@ -58,6 +58,8 @@ function Form() {
             }));
         };
 
+        setShowChoiceModal(false);
+
         if (file) {
             reader.readAsDataURL(file);
         }
@@ -181,7 +183,7 @@ function Form() {
 
     return (
         <div class="flex flex-col">
-            <div class="text-center title-section pb-[50px]">From Complement</div>
+            <div class="text-center title-section pb-[50px]">Formulir Pelaporan</div>
             <div id="reportForm" class={`relative flex flex-col justify-center h-screen overflow-hidden ${theme() ? "bg-white" : "bg-black"} bg-opacity-30 bg-blur`}>
                 <div class={`w-full  ${theme() ? "bg-[#13173a]" : "bg-white"} m-auto rounded-md shadow-md lg:max-w-xl`}>
                     <form class="space-y-4 py-[60px] px-[70px]" method="POST" onSubmit={handleSubmit}>
@@ -203,7 +205,7 @@ function Form() {
                                 <span class="text-base label-text">Lokasi</span>
                             </label>
                             <div class="relative flex items-center">
-                                <input type="text" name="location" placeholder="Location" value={formData().location} onChange={handleInputChange} class="w-full input input-bordered  bg-transparent" disabled />
+                                <input type="text" name="Lokasi" placeholder="Lokasi" value={formData().location} onChange={handleInputChange} class="w-full input input-bordered  bg-transparent" disabled />
                                 {loadingLocation() && (
                                     <div class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
                                         <div class="loader"></div>
@@ -220,7 +222,7 @@ function Form() {
                             </label>
                             <div class="flex space-x-2">
                                 <button type="button" class="btn button-primary" onClick={() => setShowChoiceModal(true)}>
-                                    Choose
+                                    Ambil Gambar
                                 </button>
                                 {imagePreview() && (
                                     <div class="mt-4 w-64 h-64 overflow-auto border">
@@ -230,24 +232,23 @@ function Form() {
                             </div>
                             {showChoiceModal() && (
                                 <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                                    <div class="bg-white p-4 rounded shadow-lg">
-                                        <h3 class="text-lg font-semibold mb-2">Select Option</h3>
-                                        <button type="button" class="btn btn-primary w-full mb-2" onClick={startWebcam}>
-                                            Take a Picture
+                                    <div class="bg-white p-4 rounded shadow-lg relative">
+                                        <button type="button" class="absolute top-2 right-2 text-red-500" onClick={() => setShowChoiceModal(false)}>
+                                            &times;
                                         </button>
+                                        <h3 class="text-lg font-semibold mb-2">Select Option</h3>
+                                        <button type="button" class="btn button-primary w-full mb-2" onClick={startWebcam}>Ambil Gambar dari Kamera</button>
                                         {showWebcam() && (
                                             <div class="flex flex-col items-center">
-                                                <video ref={(el) => (videoRef = el)} class="w-full" playsInline></video>
-                                                <canvas ref={(el) => (canvasRef = el)} class="hidden" width="640" height="480"></canvas>
-                                                <button type="button" class="btn btn-primary mt-2" onClick={capture}>
-                                                    Capture
-                                                </button>
+                                                <video ref={el => videoRef = el} class="w-full" playsInline></video>
+                                                <canvas ref={el => canvasRef = el} class="hidden" width="640" height="480"></canvas>
+                                                <button type="button" class="btn button-primary mt-2" onClick={capture}>Tangkap Gambar</button>
                                             </div>
                                         )}
                                         <input type="file" class="file-input file-input-bordered w-full" onChange={handleFileChange} />
-                                        <button type="button" class="btn btn-outline w-full mt-2" onClick={() => setShowChoiceModal(false)}>
-                                            Cancel
-                                        </button>
+                                        {/* <button type="button" class="btn btn-outline w-full mt-2" onClick={() => setShowChoiceModal(false)}>
+                                            Batalkan
+                                        </button> */}
                                     </div>
                                 </div>
                             )}
@@ -260,7 +261,7 @@ function Form() {
                         </div>
                         <div class="">
                             <button type="submit" class="btn btn-block button-primary">
-                                SEND
+                                Kirim Laporan
                             </button>
                         </div>
                     </form>

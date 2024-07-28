@@ -49,3 +49,20 @@ html {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+/* Hide the original file input */
+.file-input-hidden {
+    display: none;
+}
+
+/* Custom file input button */
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/* Ensure buttons have the same width */
+.custom-width {
+    width: 100%;
+}

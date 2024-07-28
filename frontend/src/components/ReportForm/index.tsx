@@ -112,39 +112,38 @@ function Form() {
     };
 
     const handleSubmit = async (e: any) => {
+        e.preventDefault();
         try {
-            const response = await axios.post(`${url}/${method[0]}`, formData());
-            const sendEmail = await axios.post(`${url}/${method[2]}`, formData().location);
-            e.preventDefault();
+            await axios.post(`${url}/${method[0]}`, formData());
+            await axios.post(`${url}/${method[2]}`, formData().location);
             setLoading(true);
-            setTimeout(() => {
-                fetchLocation();
+            // setTimeout(() => {
+            //     fetchLocation();
 
-                const randomizedStatus = getRandomStatus();
-                const updatedFormData = { ...formData(), status: randomizedStatus };
+            //     const randomizedStatus = getRandomStatus();
+            //     const updatedFormData = { ...formData(), status: randomizedStatus };
 
-                const submissions = JSON.parse(localStorage.getItem("submissions") || "[]");
-                submissions.push(updatedFormData);
-                localStorage.setItem("submissions", JSON.stringify(submissions));
+            //     const submissions = JSON.parse(localStorage.getItem("submissions") || "[]");
+            //     submissions.push(updatedFormData);
+            //     localStorage.setItem("submissions", JSON.stringify(submissions));
 
-                // sendEmail(updatedFormData); // Send email after saving data
+            //     // sendEmail(updatedFormData); // Send email after saving data
 
-                // Reset form state
-                setFormData(initialFormState);
-                setImagePreview("");
-                setLoading(false);
-                setFile(null);
-                setMessage("Form submitted successfully!");
+            //     // Reset form state
+            //     setFormData(initialFormState);
+            //     setImagePreview("");
+            //     setLoading(false);
+            //     setFile(null);
+            //     setMessage("Form submitted successfully!");
 
-                setTimeout(() => {
-                    setMessage("");
-                }, 3000);
-            }, 1000); // Simulate delay for demo purposes
-            return response.data, sendEmail.data;
-            navigate(-1);
+            //     setTimeout(() => {
+            //         setMessage("");
+            //     }, 3000);
+            // }, 1000); // Simulate delay for demo purposes
+            navigate("/Submissions");
+            // return response.data, sendEmail.data;
         } catch (error) {
             console.error("Error in POST request:", error);
-            return {};
         }
     };
 
@@ -171,6 +170,7 @@ function Form() {
             image: imageSrc,
         }));
         setShowWebcam(false);
+        setShowChoiceModal(false);
         const stream = videoRef.srcObject;
         const tracks = stream.getTracks();
 
@@ -237,12 +237,16 @@ function Form() {
                                             &times;
                                         </button>
                                         <h3 class="text-lg font-semibold mb-2">Select Option</h3>
-                                        <button type="button" class="btn button-primary w-full mb-2" onClick={startWebcam}>Ambil Gambar dari Kamera</button>
+                                        <button type="button" class="btn button-primary w-full mb-2" onClick={startWebcam}>
+                                            Ambil Gambar dari Kamera
+                                        </button>
                                         {showWebcam() && (
                                             <div class="flex flex-col items-center">
-                                                <video ref={el => videoRef = el} class="w-full" playsInline></video>
-                                                <canvas ref={el => canvasRef = el} class="hidden" width="640" height="480"></canvas>
-                                                <button type="button" class="btn button-primary mt-2" onClick={capture}>Tangkap Gambar</button>
+                                                <video ref={(el) => (videoRef = el)} class="w-full" playsInline></video>
+                                                <canvas ref={(el) => (canvasRef = el)} class="hidden" width="640" height="480"></canvas>
+                                                <button type="button" class="btn button-primary mt-2" onClick={capture}>
+                                                    Tangkap Gambar
+                                                </button>
                                             </div>
                                         )}
                                         <input type="file" class="file-input file-input-bordered w-full" onChange={handleFileChange} />

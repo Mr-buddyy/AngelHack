@@ -16,33 +16,33 @@ const email = async (req, res) => {
         });
     };
 
-    const getEmailRecipient = (location) => {
-        if (location.toLowerCase() === "jakarta selatan") {
-            return "singgihbudih@gmail.com";
-        } else if (location.toLowerCase() === "java") {
-            return "singgihbudi.sbh@gmail.com";
-        } else if (location.toLowerCase() === "Sate Khas Senayan, Gang Masjid, RW 01, Lebak Bulus, Cilandak, South Jakarta, Special Region of Jakarta, Java, 12450, Indonesia") {
-            return "alwinazar75@gmail.com";
-        } else {
-            return "20104045@ittelkom-pwt.ac.id";
-        }
-    };
+    // const getEmailRecipient = (location) => {
+    //     if (location.toLowerCase() === "jakarta selatan") {
+    //         return "singgihbudih@gmail.com";
+    //     } else if (location.toLowerCase() === "java") {
+    //         return "singgihbudi.sbh@gmail.com";
+    //     } else if (location.toLowerCase() === "Sate Khas Senayan, Gang Masjid, RW 01, Lebak Bulus, Cilandak, South Jakarta, Special Region of Jakarta, Java, 12450, Indonesia") {
+    //         return "alwinazar75@gmail.com";
+    //     } else {
+    //         return "20104045@ittelkom-pwt.ac.id";
+    //     }
+    // };
 
-    const getEmailTemplate = (location) => {
-        if (location.toLowerCase() === "Sate Khas Senayan, Gang Masjid, RW 01, Lebak Bulus, Cilandak, South Jakarta, Special Region of Jakarta, Java, 12450, Indonesia") {
-            return "Template for Jakarta Selatan";
-        } else if (location.toLowerCase() === "java") {
-            return "Template for Java";
-        } else if (location.toLowerCase() === "east java") {
-            return "Template for East Java";
-        } else {
-            return "Default Template";
-        }
-    };
+    // const getEmailTemplate = (location) => {
+    //     if (location.toLowerCase() === "Sate Khas Senayan, Gang Masjid, RW 01, Lebak Bulus, Cilandak, South Jakarta, Special Region of Jakarta, Java, 12450, Indonesia") {
+    //         return "Template for Jakarta Selatan";
+    //     } else if (location.toLowerCase() === "java") {
+    //         return "Template for Java";
+    //     } else if (location.toLowerCase() === "east java") {
+    //         return "Template for East Java";
+    //     } else {
+    //         return "Default Template";
+    //     }
+    // };
 
     const { location } = req.body;
-    const recipient = getEmailRecipient(location);
-    const template = getEmailTemplate(location);
+    // const recipient = getEmailRecipient(location);
+    // const template = getEmailTemplate(location);
 
     const transporter = await createTransporter();
 

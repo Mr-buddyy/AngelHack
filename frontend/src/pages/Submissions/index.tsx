@@ -1,5 +1,6 @@
 import Solid from "@/assets/solid.svg";
 import { createSignal, onMount } from "solid-js";
+import { theme } from "@/config";
 
 import { Footer, Navbar } from "@/components";
 
@@ -28,11 +29,11 @@ function Submissions() {
             <Navbar />
             <div>
                 <h1 class="text-center title-section pb-[50px]">Laporan</h1>
-                <div class="container mx-auto px-4">
-                    <div class="grid grid-cols-1 gap-4">
+                <div class="container mx-auto px-4 mb-5">
+                    <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
                         {submissions().map((submission, index) => (
-                            <div class="bg-white p-4 rounded shadow" key={index}>
-                                <div class="flex justify-between items-center">
+                            <div class={`${theme() ? "bg-white" : "bg-black"} bg-opacity-40 p-6 rounded-xl shadow`} key={index}>
+                                <div class="flex justify-between items-center pb-5">
                                     <h2 class="text-xl font-bold">{submission.title}</h2>
                                     <span class={`text-white text-sm px-2 py-1 rounded ${getBadgeColor(submission.status)}`}>
                                         {submission.status}

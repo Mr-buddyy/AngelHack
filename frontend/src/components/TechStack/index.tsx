@@ -1,4 +1,4 @@
-import { Express, MongoDB, TailwindCSS, Solidjs, MySQL, Python } from "@/assets";
+import { Express, MongoDB, TailwindCSS, Solidjs, Python } from "@/assets";
 import { theme } from "@/config";
 
 function TechStack() {
@@ -10,9 +10,9 @@ function TechStack() {
             <div class="carousel-item">
                 <img src={Solidjs} alt="Pizza" />
             </div>
-            <div class="carousel-item">
+            {/* <div class="carousel-item">
                 <img src={MySQL} alt="Pizza" />
-            </div>
+            </div> */}
             <div class="carousel-item">
                 <img src={Python} alt="Pizza" />
             </div>

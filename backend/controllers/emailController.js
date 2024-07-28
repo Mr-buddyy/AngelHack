@@ -21,7 +21,7 @@ const email = async (req, res) => {
             return "singgihbudih@gmail.com";
         } else if (location.toLowerCase() === "java") {
             return "singgihbudi.sbh@gmail.com";
-        } else if (location.toLowerCase() === "east java") {
+        } else if (location.toLowerCase() === "Sate Khas Senayan, Gang Masjid, RW 01, Lebak Bulus, Cilandak, South Jakarta, Special Region of Jakarta, Java, 12450, Indonesia") {
             return "alwinazar75@gmail.com";
         } else {
             return "20104045@ittelkom-pwt.ac.id";
@@ -29,7 +29,7 @@ const email = async (req, res) => {
     };
 
     const getEmailTemplate = (location) => {
-        if (location.toLowerCase() === "jakarta selatan") {
+        if (location.toLowerCase() === "Sate Khas Senayan, Gang Masjid, RW 01, Lebak Bulus, Cilandak, South Jakarta, Special Region of Jakarta, Java, 12450, Indonesia") {
             return "Template for Jakarta Selatan";
         } else if (location.toLowerCase() === "java") {
             return "Template for Java";
@@ -48,9 +48,9 @@ const email = async (req, res) => {
 
     const mailOptions = {
         from: "satriaitdev@gmail.com",
-        to: recipient,
+        to: "alwinazar75@gmail.com",
         subject: `Email for ${location}`,
-        text: template,
+        text: "Template for East Java",
     };
 
     try {

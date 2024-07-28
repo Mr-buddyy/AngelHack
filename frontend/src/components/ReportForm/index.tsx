@@ -1,5 +1,7 @@
 import { createSignal } from "solid-js";
-import emailjs from "emailjs-com";
+import axios from "axios";
+import { theme } from "@/config";
+// import emailjs from "emailjs-com";
 
 function Form() {
     const initialFormState = {
@@ -13,36 +15,34 @@ function Form() {
         status: "pending",
     };
 
-    const [formData, setFormData] = createSignal(initialFormState);
+    const [formData, setFormData] = createSignal({ title: "", description: "", location: "", latitude: "", longitude: "", city: "", image: "", status: "pending" });
     const [file, setFile] = createSignal(null);
     const [imagePreview, setImagePreview] = createSignal("");
     const [loadingLocation, setLoadingLocation] = createSignal(false);
     const [loading, setLoading] = createSignal(false);
     const [message, setMessage] = createSignal("");
     const [showChoiceModal, setShowChoiceModal] = createSignal(false);
+    const url = "http://localhost:3001/api";
+    const method = ["submit", "list", "send-email"];
 
-    const cityEmailMapping = {
-        Jakarta: "jakarta@gmail.com",
-        Bandung: "bandung@gmail.com",
-        // Add more cities and their respective emails here
-    };
-
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: any) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+        console.log(formData().location, "isi location");
+        console.log(formData(), "isi from datane");
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = (e: any) => {
         const file = e.target.files[0];
         setFile(file);
 
         const reader = new FileReader();
         reader.onloadend = () => {
             setImagePreview(reader.result);
-            setFormData((prevData) => ({
+            setFormData((prevData: any) => ({
                 ...prevData,
                 image: reader.result,
             }));
@@ -53,7 +53,7 @@ function Form() {
         }
     };
 
-    const fetchLocation = (e) => {
+    const fetchLocation = () => {
         setLoadingLocation(true);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -66,10 +66,12 @@ function Form() {
                             const location = data.display_name;
                             const city = data.address.city || data.address.town || data.address.village;
 
-                            setFormData((prevData) => ({
+                            setFormData((prevData: any) => ({
                                 ...prevData,
                                 location,
                                 city,
+                                latitude,
+                                longitude,
                             }));
 
                             setLoadingLocation(false);
@@ -97,90 +99,73 @@ function Form() {
         return statuses[Math.floor(Math.random() * statuses.length)];
     };
 
-    const sendEmail = (data) => {
-        const cityEmail = cityEmailMapping[data.city];
+    const handleSubmit = async (e: any) => {
+        try {
+            const response = await axios.post(`${url}/${method[0]}`, formData());
+            const sendEmail = await axios.post(`${url}/${method[2]}`, formData().location);
+            e.preventDefault();
+            setLoading(true);
+            setTimeout(() => {
+                fetchLocation();
 
-        if (cityEmail) {
-            const emailParams = {
-                to_email: cityEmail,
-                title: data.title,
-                description: data.description,
-                location: data.location,
-                image: data.image,
-                status: data.status,
-            };
+                const randomizedStatus = getRandomStatus();
+                const updatedFormData = { ...formData(), status: randomizedStatus };
 
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", emailParams, "YOUR_USER_ID").then(
-                (response) => {
-                    console.log("Email sent successfully:", response.status, response.text);
-                },
-                (error) => {
-                    console.error("Failed to send email:", error);
-                }
-            );
+                const submissions = JSON.parse(localStorage.getItem("submissions") || "[]");
+                submissions.push(updatedFormData);
+                localStorage.setItem("submissions", JSON.stringify(submissions));
+
+                // sendEmail(updatedFormData); // Send email after saving data
+
+                // Reset form state
+                setFormData(initialFormState);
+                setImagePreview("");
+                setLoading(false);
+                setFile(null);
+                setMessage("Form submitted successfully!");
+
+                setTimeout(() => {
+                    setMessage("");
+                }, 3000);
+            }, 1000); // Simulate delay for demo purposes
+            return response.data, sendEmail.data;
+        } catch (error) {
+            console.error("Error in POST request:", error);
+            return {};
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-
-        setTimeout(() => {
-            fetchLocation();
-
-            const randomizedStatus = getRandomStatus();
-            const updatedFormData = { ...formData(), status: randomizedStatus };
-
-            const submissions = JSON.parse(localStorage.getItem("submissions") || "[]");
-            submissions.push(updatedFormData);
-            localStorage.setItem("submissions", JSON.stringify(submissions));
-
-            sendEmail(updatedFormData); // Send email after saving data
-
-            // Reset form state
-            setFormData(initialFormState);
-            setImagePreview("");
-            setLoading(false);
-            setFile(null);
-            setMessage("Form submitted successfully!");
-
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
-        }, 1000); // Simulate delay for demo purposes
-    };
-
     return (
-        <div id="reportForm" class="flex flex-col">
+        <div class="flex flex-col">
             <div class="text-center title-section pb-[50px]">From Complement</div>
-            <div class="relative flex flex-col justify-center h-screen overflow-hidden bg-white bg-opacity-30 bg-blur">
-                <div class="w-full m-auto bg-white rounded-md shadow-md lg:max-w-xl">
+            <div id="reportForm" class={`relative flex flex-col justify-center h-screen overflow-hidden ${theme() ? "bg-white" : "bg-black"} bg-opacity-30 bg-blur`}>
+                <div class={`w-full  ${theme() ? "bg-[#13173a]" : "bg-white"} m-auto rounded-md shadow-md lg:max-w-xl`}>
                     <form class="space-y-4 py-[60px] px-[70px]" method="POST" onSubmit={handleSubmit}>
                         {message() && <div class="alert alert-success">{message()}</div>}
                         <div>
                             <label class="label">
                                 <span class="text-base label-text">Judul</span>
                             </label>
-                            <input type="text" name="title" placeholder="Judul" value={formData().title} onChange={handleInputChange} class="w-full input input-bordered input-primary" required />
+                            <input type="text" name="title" placeholder="Judul" value={formData().title} onChange={handleInputChange} class="w-full input input-bordered bg-transparent" required />
                         </div>
                         <div>
                             <label class="label">
                                 <span class="text-base label-text">Keterangan</span>
                             </label>
-                            <textarea name="description" placeholder="Keterangan" value={formData().description} onChange={handleInputChange} class="w-full textarea input-primary" required />
+                            <textarea name="description" placeholder="Keterangan" value={formData().description} onChange={handleInputChange} class="w-full textarea textarea-bordered  bg-transparent" required />
                         </div>
                         <div class="w-full">
                             <label class="label">
                                 <span class="text-base label-text">Lokasi</span>
                             </label>
                             <div class="relative flex items-center">
-                                <input type="text" name="location" placeholder="Location" value={formData().location} onChange={handleInputChange} class="w-full input input-bordered input-primary" disabled />
+                                <input type="text" name="location" placeholder="Location" value={formData().location} onChange={handleInputChange} class="w-full input input-bordered  bg-transparent" disabled />
                                 {loadingLocation() && (
                                     <div class="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75">
                                         <div class="loader"></div>
                                     </div>
                                 )}
-                                <button type="button" class="btn btn-primary ml-2" onClick={fetchLocation}>
+                                <button type="button" class="btn button-primary ml-2" onClick={fetchLocation}>
                                     ↻
                                 </button>
                             </div>
@@ -190,7 +175,7 @@ function Form() {
                                 <span class="text-base label-text">Bukti</span>
                             </label>
                             <div class="flex space-x-2">
-                                <button type="button" class="btn btn-secondary" onClick={() => setShowChoiceModal(true)}>
+                                <button type="button" class="btn button-primary" onClick={() => setShowChoiceModal(true)}>
                                     Choose
                                 </button>
                                 {imagePreview() && (

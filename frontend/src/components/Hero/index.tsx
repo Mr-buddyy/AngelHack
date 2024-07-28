@@ -9,7 +9,7 @@ function Hero() {
                     <p class="py-6">Adukan keluhan anda dengan anonimus dan rahasia</p>
                     <div class="flex flex-row gap-2">
                         {" "}
-                        <a href="#about" class="btn button-primary">
+                        <a href="#about" class="btn btn-outline">
                             About
                         </a>
                         <a href="#reportForm" class="btn button-primary">

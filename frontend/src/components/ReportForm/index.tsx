@@ -3,6 +3,7 @@ import axios from "axios";
 import { theme } from "@/config";
 import { useNavigate } from "@solidjs/router";
 
+import Webcam from "react-webcam";
 // import emailjs from "emailjs-com";
 
 function Form() {
@@ -24,7 +25,13 @@ function Form() {
     const [loading, setLoading] = createSignal(false);
     const [message, setMessage] = createSignal("");
     const [showChoiceModal, setShowChoiceModal] = createSignal(false);
+
     const url = "http://172.16.58.72:3001/api";
+    const [showWebcam, setShowWebcam] = createSignal(false);
+
+    let videoRef;
+    let canvasRef;
+
     const method = ["submit", "list", "send-email"];
     const navigate = useNavigate();
 
@@ -139,6 +146,38 @@ function Form() {
         }
     };
 
+    const startWebcam = () => {
+        setShowWebcam(true);
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                videoRef.srcObject = stream;
+                videoRef.play();
+            })
+            .catch(error => {
+                console.error('Error accessing webcam: ', error);
+            });
+    };
+
+    const capture = () => {
+        const context = canvasRef.getContext('2d');
+        context.drawImage(videoRef, 0, 0, canvasRef.width, canvasRef.height);
+        const imageSrc = canvasRef.toDataURL('image/jpeg');
+        setImagePreview(imageSrc);
+        setFormData(prevData => ({
+            ...prevData,
+            image: imageSrc
+        }));
+        setShowWebcam(false);
+        const stream = videoRef.srcObject;
+        const tracks = stream.getTracks();
+
+        tracks.forEach(track => {
+            track.stop();
+        });
+
+        videoRef.srcObject = null;
+    };
+
     return (
         <div class="flex flex-col">
             <div class="text-center title-section pb-[50px]">From Complement</div>
@@ -192,11 +231,14 @@ function Form() {
                                 <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                                     <div class="bg-white p-4 rounded shadow-lg">
                                         <h3 class="text-lg font-semibold mb-2">Select Option</h3>
-
-                                        <button type="button" class="btn btn-primary w-full mb-2" onClick={() => document.getElementById("cameraInput").click()}>
-                                            Take a Picture
-                                        </button>
-                                        <input id="cameraInput" type="file" accept="image/*" capture="environment" style={{ display: "none" }} onChange={handleFileChange} />
+                                        <button type="button" class="btn btn-primary w-full mb-2" onClick={startWebcam}>Take a Picture</button>
+                                        {showWebcam() && (
+                                            <div class="flex flex-col items-center">
+                                                <video ref={el => videoRef = el} class="w-full" playsInline></video>
+                                                <canvas ref={el => canvasRef = el} class="hidden" width="640" height="480"></canvas>
+                                                <button type="button" class="btn btn-primary mt-2" onClick={capture}>Capture</button>
+                                            </div>
+                                        )}
                                         <input type="file" class="file-input file-input-bordered w-full" onChange={handleFileChange} />
                                         <button type="button" class="btn btn-outline w-full mt-2" onClick={() => setShowChoiceModal(false)}>
                                             Cancel

@@ -1,3 +1,5 @@
+import { Infra } from "@/assets";
+
 function Hero() {
     return (
         <div class="">
@@ -17,7 +19,7 @@ function Hero() {
                         </a>
                     </div>
                 </div>
-                <img src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp" class="max-w-sm rounded-lg shadow-[2px_2px_500px_22px_#d53f8c]" />
+                <img src={Infra} class="max-w-sm rounded-lg" />
             </div>
         </div>
     );

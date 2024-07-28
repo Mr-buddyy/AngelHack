@@ -7,4 +7,5 @@ import Express from "./Icons/Express.png";
 import MongoDB from "./Icons/MongoDB.png";
 import Sun from "./Icons/Sun.svg";
 import Moon from "./Icons/Moon.svg";
-export { Sun, Moon, Express, MongoDB, TailwindCSS, Solidjs, MySQL, Python, Logo };
+import Infra from "./Hero.png";
+export { Sun, Moon, Express, MongoDB, TailwindCSS, Solidjs, MySQL, Python, Logo, Infra };

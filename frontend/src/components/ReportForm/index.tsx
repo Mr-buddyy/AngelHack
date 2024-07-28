@@ -148,30 +148,31 @@ function Form() {
 
     const startWebcam = () => {
         setShowWebcam(true);
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
+        navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then((stream) => {
                 videoRef.srcObject = stream;
                 videoRef.play();
             })
-            .catch(error => {
-                console.error('Error accessing webcam: ', error);
+            .catch((error) => {
+                console.error("Error accessing webcam: ", error);
             });
     };
 
     const capture = () => {
-        const context = canvasRef.getContext('2d');
+        const context = canvasRef.getContext("2d");
         context.drawImage(videoRef, 0, 0, canvasRef.width, canvasRef.height);
-        const imageSrc = canvasRef.toDataURL('image/jpeg');
+        const imageSrc = canvasRef.toDataURL("image/jpeg");
         setImagePreview(imageSrc);
-        setFormData(prevData => ({
+        setFormData((prevData) => ({
             ...prevData,
-            image: imageSrc
+            image: imageSrc,
         }));
         setShowWebcam(false);
         const stream = videoRef.srcObject;
         const tracks = stream.getTracks();
 
-        tracks.forEach(track => {
+        tracks.forEach((track) => {
             track.stop();
         });
 
@@ -231,12 +232,16 @@ function Form() {
                                 <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                                     <div class="bg-white p-4 rounded shadow-lg">
                                         <h3 class="text-lg font-semibold mb-2">Select Option</h3>
-                                        <button type="button" class="btn btn-primary w-full mb-2" onClick={startWebcam}>Take a Picture</button>
+                                        <button type="button" class="btn btn-primary w-full mb-2" onClick={startWebcam}>
+                                            Take a Picture
+                                        </button>
                                         {showWebcam() && (
                                             <div class="flex flex-col items-center">
-                                                <video ref={el => videoRef = el} class="w-full" playsInline></video>
-                                                <canvas ref={el => canvasRef = el} class="hidden" width="640" height="480"></canvas>
-                                                <button type="button" class="btn btn-primary mt-2" onClick={capture}>Capture</button>
+                                                <video ref={(el) => (videoRef = el)} class="w-full" playsInline></video>
+                                                <canvas ref={(el) => (canvasRef = el)} class="hidden" width="640" height="480"></canvas>
+                                                <button type="button" class="btn btn-primary mt-2" onClick={capture}>
+                                                    Capture
+                                                </button>
                                             </div>
                                         )}
                                         <input type="file" class="file-input file-input-bordered w-full" onChange={handleFileChange} />

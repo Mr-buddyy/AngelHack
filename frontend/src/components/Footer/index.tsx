@@ -13,7 +13,7 @@ function Footer() {
                     <h1 class="footer-title" style="margin: 0">
                         Ready to get started?
                     </h1>
-                    <a href="/home#reportForm" class="btn btn-active button-primary">
+                    <a href="/home#reportForm" class="btn button-primary">
                         Isi Formulir
                     </a>
                 </nav>

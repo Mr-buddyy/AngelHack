@@ -8,19 +8,19 @@ function Submissions() {
     const [submissions, setSubmissions] = createSignal([]);
 
     onMount(() => {
-        const savedSubmissions = JSON.parse(localStorage.getItem('submissions') || '[]');
+        const savedSubmissions = JSON.parse(localStorage.getItem("submissions") || "[]");
         setSubmissions(savedSubmissions);
     });
 
     const getBadgeColor = (status) => {
         switch (status) {
-            case 'resolved':
-                return 'bg-green-500';
-            case 'on progress':
-                return 'bg-yellow-500';
-            case 'pending':
+            case "resolved":
+                return "bg-green-500";
+            case "on progress":
+                return "bg-yellow-500";
+            case "pending":
             default:
-                return 'bg-gray-500';
+                return "bg-gray-500";
         }
     };
 
@@ -32,19 +32,20 @@ function Submissions() {
                 <div class="container mx-auto px-4 mb-5">
                     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
                         {submissions().map((submission, index) => (
-                            <div class={`${theme() ? "bg-white" : "bg-black"} bg-opacity-40 p-6 rounded-xl shadow`} key={index}>
+                            <div class={`${theme() ? "bg-white" : "bg-black"} bg-opacity-30 p-6 rounded-xl shadow`} key={index}>
                                 <div class="flex justify-between items-center pb-5">
                                     <h2 class="text-xl font-bold">{submission.title}</h2>
-                                    <span class={`text-white text-sm px-2 py-1 rounded ${getBadgeColor(submission.status)}`}>
-                                        {submission.status}
-                                    </span>
+                                    <span class={`text-white text-sm px-2 py-1 rounded ${getBadgeColor(submission.status)}`}>{submission.status}</span>
                                 </div>
                                 <p>{submission.description}</p>
-                                <p><strong>Location:</strong> {submission.location}</p>
-                                <p><strong>City:</strong> {submission.city}</p> {/* Display city */}
-                                {submission.image && (
-                                    <img src={submission.image} alt="Submitted Evidence" class="w-64 h-64 object-contain mt-2" />
-                                )}
+                                <p>
+                                    <strong>Location:</strong> {submission.location}
+                                </p>
+                                <p>
+                                    <strong>City:</strong> {submission.city}
+                                </p>{" "}
+                                {/* Display city */}
+                                {submission.image && <img src={submission.image} alt="Submitted Evidence" class="w-64 h-64 object-contain mt-2" />}
                             </div>
                         ))}
                     </div>

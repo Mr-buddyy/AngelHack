@@ -225,13 +225,13 @@ function Form() {
                                     Ambil Gambar
                                 </button>
                                 {imagePreview() && (
-                                    <div class="mt-4 w-64 h-64 overflow-auto border">
-                                        <img src={imagePreview()} alt="Image Preview" class="w-full h-full object-contain" />
+                                    <div class=" w-52 h-52 overflow-auto border">
+                                        <img src={imagePreview()} alt="Image Preview" class="w-full h-full object-cover" />
                                     </div>
                                 )}
                             </div>
                             {showChoiceModal() && (
-                                <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                                <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                                     <div class="bg-white p-4 rounded shadow-lg relative">
                                         <button type="button" class="absolute top-2 right-2 text-red-500" onClick={() => setShowChoiceModal(false)}>
                                             &times;

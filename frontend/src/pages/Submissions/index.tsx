@@ -1,7 +1,7 @@
 import Solid from "@/assets/solid.svg";
-import { createSignal, onMount } from "solid-js";
+import { createEffect, createSignal, onMount } from "solid-js";
 import { theme } from "@/config";
-
+import axios from "axios";
 import { Footer, Navbar } from "@/components";
 
 function Submissions() {
@@ -24,6 +24,21 @@ function Submissions() {
         }
     };
 
+    const [data, setData] = createSignal([]);
+    createEffect(async () => {
+        try {
+            const response = await axios.get(`http://172.16.58.72:3001/api/list`);
+            if (Array.isArray(response.data)) {
+                setData(response.data);
+            } else {
+                setData([]); // Handle case where response data is not an array
+            }
+        } catch (error) {
+            console.error("Error in GET request:", error);
+            setData([]); // Handle error by setting data to an empty array
+        }
+    });
+
     return (
         <div>
             <Navbar />
@@ -31,21 +46,20 @@ function Submissions() {
                 <h1 class="text-center title-section pb-[50px]">Laporan</h1>
                 <div class="container mx-auto px-4 mb-5">
                     <div class="grid sm:grid-cols-2 grid-cols-1 gap-4">
-                        {submissions().map((submission, index) => (
+                        {data().map((data: any, index: any) => (
                             <div class={`${theme() ? "bg-white" : "bg-black"} bg-opacity-30 p-6 rounded-xl shadow`} key={index}>
                                 <div class="flex justify-between items-center pb-5">
-                                    <h2 class="text-xl font-bold">{submission.title}</h2>
-                                    <span class={`text-white text-sm px-2 py-1 rounded ${getBadgeColor(submission.status)}`}>{submission.status}</span>
+                                    <h2 class="text-xl font-bold">{data.title}</h2>
+                                    <span class={`text-white text-sm px-2 py-1 rounded ${getBadgeColor(data.status)}`}>{data.status}</span>
                                 </div>
-                                <p>{submission.description}</p>
+                                <p>{data.description}</p>
                                 <p>
-                                    <strong>Location:</strong> {submission.location}
+                                    <strong>Location:</strong> {data.location}
                                 </p>
                                 <p>
-                                    <strong>City:</strong> {submission.city}
+                                    <strong>City:</strong> {data.city}
                                 </p>{" "}
-                                {/* Display city */}
-                                {submission.image && <img src={submission.image} alt="Submitted Evidence" class="w-64 h-64 object-contain mt-2" />}
+                                {data.image && <img src={data.image} alt="Submitted Evidence" class="w-64 h-64 object-contain mt-2" />}
                             </div>
                         ))}
                     </div>

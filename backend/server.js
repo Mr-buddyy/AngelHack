@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 // Routes
 app.use("/api", dataRoute);
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
     console.log(`Server running at http://localhost:${port}`);
     connectMongoDB();
     console.log("MongoDB URI:", process.env.MONGO_URI);

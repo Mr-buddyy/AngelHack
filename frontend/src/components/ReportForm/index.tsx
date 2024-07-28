@@ -1,6 +1,8 @@
 import { createSignal } from "solid-js";
 import axios from "axios";
 import { theme } from "@/config";
+import { useNavigate } from "@solidjs/router";
+
 // import emailjs from "emailjs-com";
 
 function Form() {
@@ -22,8 +24,9 @@ function Form() {
     const [loading, setLoading] = createSignal(false);
     const [message, setMessage] = createSignal("");
     const [showChoiceModal, setShowChoiceModal] = createSignal(false);
-    const url = "http://localhost:3001/api";
+    const url = "http://172.16.58.72:3001/api";
     const method = ["submit", "list", "send-email"];
+    const navigate = useNavigate();
 
     const handleInputChange = (e: any) => {
         const { name, value } = e.target;
@@ -129,6 +132,7 @@ function Form() {
                 }, 3000);
             }, 1000); // Simulate delay for demo purposes
             return response.data, sendEmail.data;
+            navigate(-1);
         } catch (error) {
             console.error("Error in POST request:", error);
             return {};

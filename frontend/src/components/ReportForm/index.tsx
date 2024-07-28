@@ -188,6 +188,7 @@ function Form() {
                                 <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                                     <div class="bg-white p-4 rounded shadow-lg">
                                         <h3 class="text-lg font-semibold mb-2">Select Option</h3>
+
                                         <button type="button" class="btn btn-primary w-full mb-2" onClick={() => document.getElementById("cameraInput").click()}>
                                             Take a Picture
                                         </button>

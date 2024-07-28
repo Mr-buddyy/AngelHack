@@ -26,3 +26,6 @@
 .card.image-full > .card-body {
     color: #ffffff;
 }
+.join {
+    border-radius: 0;
+}

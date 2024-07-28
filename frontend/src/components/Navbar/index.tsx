@@ -14,18 +14,14 @@ function Navbar() {
                 </div>
                 <div class="flex-none">
                     <ul class="menu menu-horizontal px-1 items-center">
-                        <li>
-                            <a href="/home#about">About</a>
-                        </li>
-                        <li>
+                        <li>{/* <a href="/home#about">About</a> */}</li>
+                        <li class="hidden sm:flex">
                             <a href="/home#reportForm">Feature</a>
                         </li>
-                        <li>
+                        <li class="hidden sm:flex">
                             <a href="/Submissions">Daftar Laporan</a>
                         </li>
-                        <li>
-                            <a href="/home#faq">FAQ</a>
-                        </li>{" "}
+                        <li>{/* <a href="/home#faq">FAQ</a> */}</li>{" "}
                         <li>
                             {" "}
                             <a>

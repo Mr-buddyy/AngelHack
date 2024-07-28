@@ -18,4 +18,12 @@ const list = async (req, res) => {
         res.status(500).send(err);
     }
 };
-export { form, list };
+const del = async (req, res) => {
+    try {
+        const data = await Data.deleteMany();
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+};
+export { form, list, del };
